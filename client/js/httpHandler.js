@@ -1,10 +1,55 @@
 (function() {
 
+
   const serverUrl = 'http://127.0.0.1:3000';
+
 
   //
   // TODO: build the swim command fetcher here
-  //
+  //errorCB
+  const fetchSwimCommand = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      success: (direction) => {
+         console.log(direction)
+       SwimTeam.move(direction)
+      }
+    })
+  }
+  setInterval(fetchSwimCommand, 10000);
+
+  // const fetchBackground = () => {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: serverUrl,
+  //     success: (image) => {
+  //       $('body').css({'background-image': image});
+  //       console.log('is the background there?');
+  //     }
+  //   })
+  // }
+
+  // $('body').on('keydown', (event) => {
+  //   var buttonPress = event.key;
+  //   if (buttonPress) {
+  //     var direction = buttonPress;
+  //     sendKey(direction)
+  //     //SwimTeam.move(direction.toLowerCase());
+  //   }
+  // });
+
+  // const sendKey = (buttonPress) => {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: serverUrl,
+  //     data: JSON.stringify(buttonPress),
+  //     success: (direction) => {
+  //       SwimTeam.move(direction);
+  //     }
+  //   });
+
+  // }
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -17,7 +62,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
